@@ -1,0 +1,150 @@
+/*Обнуление*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-family: 'Nunito', sans-serif;
+}
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+:focus,
+:active {
+  outline: none;
+}
+a:focus,
+a:active {
+  outline: none;
+}
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 99vh;
+  width: 100%;
+  background: linear-gradient(
+    25deg,
+    rgba(66, 230, 149, 1),
+    rgba(66, 32, 149, 1)
+  );
+  background-repeat: no-repeat;
+  background-position: center center;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 10px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+body {
+  font-size: 1.6rem;
+  color: var(--text-dark, #403f3d);
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+input::-ms-clear {
+  display: none;
+}
+button {
+  cursor: pointer;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+a,
+a:visited {
+  text-decoration: none;
+  color: #403f3d;
+  cursor: pointer;
+}
+a:hover {
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 10px;
+  font-weight: 400;
+}
+/*----------------*/
+header,
+main,
+footer {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+header {
+  margin-top: 10px;
+  display: flex;
+  justify-content: end;
+}
+
+#search {
+  border: 1px solid #403f3d;
+  padding: 5px 10px;
+  border-radius: 10px;
+  position: relative;
+  font-size: 2rem;
+}
+
+main {
+  margin: 15px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-sizing: border-box;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.container div > img {
+  max-width: 100%;
+  display: block;
+}
+
+.container div {
+  margin: 10px;
+  flex-basis: 180px;
+}
+
+.search-icon {
+  position: absolute;
+  width: 30px;
+  height: 40px;
+  background: url(./search.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 20px;
+}
