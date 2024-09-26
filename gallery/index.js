@@ -11,8 +11,8 @@ async function getData() {
     const data = await res.json();
     //console.log(data);
     data.forEach((element) => {
-      container.innerHTML += `<div><img src="${element.urls.small}" 
-		alt="${element.alt_description}">
+      container.innerHTML += `<div class='results'><img src="${element.urls.small} " 
+		alt="${element.alt_description}" >
 </div>`;
     });
   } catch {
@@ -46,7 +46,7 @@ async function getDataWithQuery(query) {
     // console.log(data.results);
     container.innerHTML = '';
     data.results.forEach((element) => {
-      container.innerHTML += `<div><img src="${element.urls.small}" 
+      container.innerHTML += `<div class='results'><img src="${element.urls.small}" 
 	alt="${element.alt_description}">
 </div>`;
     });
