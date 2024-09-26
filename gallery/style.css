@@ -31,7 +31,7 @@ aside {
 
 html,
 body {
-  height: 99vh;
+  min-height: 100%;
   width: 100%;
   background: linear-gradient(
     25deg,
@@ -40,6 +40,10 @@ body {
   );
   background-repeat: no-repeat;
   background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   font-size: 100%;
   line-height: 1;
   font-size: 10px;
@@ -144,6 +148,14 @@ main {
   width: 30px;
   height: 40px;
   background: url(./search.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 20px;
+  cursor: pointer;
+}
+
+.close {
+  background: url(./close.png);
   background-repeat: no-repeat;
   background-position: left center;
   background-size: 20px;
