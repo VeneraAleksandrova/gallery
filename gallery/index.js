@@ -18,16 +18,19 @@ async function getData() {
     );
     const data = await res.json();
     console.log(data);
-
-    data.forEach((element) => {
-      container.innerHTML += `<div class='results'><img src="${element.urls.small}" 
-		alt="${element.alt_description}" id=${element.id}>
-</div>`;
-    });
-    document.addEventListener('DOMContentLoaded ', function () {
-      container.style.display = 'block';
-      loading.style.display = 'none';
-    });
+    completeContainer(data);
+    // data.forEach((element) => {
+    //   createElement(element);
+    //   //       container.innerHTML += `<div class='results'><img src="${element.urls.small}"
+    //   // 		alt="${element.alt_description}" id=${element.id}>
+    //   // </div>`;
+    // });
+    container.style.display = 'block';
+    loading.style.display = 'none';
+    const resultsImages = document.querySelectorAll('.results img');
+    resultsImages.forEach((resultsImage) =>
+      resultsImage.addEventListener('click', openModal)
+    );
   } catch {
     container.style.display = 'block';
     loadingImage.style.display = 'none';
@@ -74,12 +77,6 @@ async function getDataWithQuery(query) {
     );
     const data = await res.json();
     // console.log(data.results);
-    container.innerHTML = '';
-    data.results.forEach((element) => {
-      container.innerHTML += `<div class='results'><img src="${element.urls.small}" 
-	alt="${element.alt_description}">
-</div>`;
-    });
   } catch {
     container.style.display = 'block';
     loadingImage.style.display = 'none';
@@ -87,6 +84,45 @@ async function getDataWithQuery(query) {
   }
 }
 
+function completeContainer(data) {
+  data.forEach((element) => {
+    createElement(element);
+  });
+}
+
+function createElement(element) {
+  const results = document.createElement('div');
+  results.classList.add('results');
+  const image = document.createElement('img');
+  image.src = element.urls.regular;
+  image.alt = element.alt_description;
+  results.append(image);
+  container.append(results);
+}
 input.addEventListener('input', function (event) {
   if (input.value.length == 0) inputIcon.classList.remove('close');
 });
+
+/*Modal Windows*/
+const modal = document.querySelector('.modal-overlay');
+const modalContent = document.querySelector('.modal-content');
+
+function openModal(event) {
+  console.dir(event.target.tagName);
+  if (event.target.tagName === 'IMG') {
+    modal.classList.remove('hide');
+    modalContent.innerHTML = '';
+    const image = document.createElement('img');
+    image.src = event.target.currentSrc;
+    modalContent.append(image);
+
+    modal.addEventListener('click', closeModal);
+  }
+}
+
+function closeModal(e, clickedOutside) {
+  if (clickedOutside) {
+    if (e.target.classList.contains('modal-overlay'))
+      modal.classList.add('hide');
+  } else modal.classList.add('hide');
+}
