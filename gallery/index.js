@@ -1,40 +1,70 @@
-const container = document.querySelector('.container');
 const input = document.querySelector('input');
 const inputIcon = document.querySelector('.search-icon');
+const loading = document.querySelector('.loading');
+const loadingImage = document.querySelector('.loading img');
+const container = document.querySelector('.container');
 
 let closeIcon = false;
+
+window.addEventListener('load', () => {
+  input.focus();
+  getData();
+});
+
 async function getData() {
   try {
     const res = await fetch(
       'https://api.unsplash.com/photos/random?client_id=JKPLOCX2f0TBKu_pGGULx_ALX6QjwfsPt6vX_U_VWwI&count=30'
     );
     const data = await res.json();
-    //console.log(data);
+    console.log(data);
+
     data.forEach((element) => {
-      container.innerHTML += `<div class='results'><img src="${element.urls.small} " 
-		alt="${element.alt_description}" >
+      container.innerHTML += `<div class='results'><img src="${element.urls.small}" 
+		alt="${element.alt_description}" id=${element.id}>
 </div>`;
     });
+    document.addEventListener('DOMContentLoaded ', function () {
+      container.style.display = 'block';
+      loading.style.display = 'none';
+    });
   } catch {
-    //console.log(error);
+    container.style.display = 'block';
+    loadingImage.style.display = 'none';
+    loading.textContent = 'Попробуйте еще раз!';
   }
 }
-getData();
+//getData();
+
+function completeInput(event) {
+  event.preventDefault();
+  closeIcon = true;
+  inputIcon.classList.add('close');
+  getDataWithQuery(input.value);
+}
+
+function clearInput() {
+  input.value = '';
+  inputIcon.classList.remove('close');
+}
 
 input.addEventListener('keydown', function (event) {
   if (event.which === 13 || event.keyCode === 13 || event.key === 'Enter') {
-    event.preventDefault();
-    closeIcon = true;
-    //console.log(input.value);
-    inputIcon.classList.add('close');
-    getDataWithQuery(input.value);
-
+    completeInput(event);
     closeIcon &&
       inputIcon.addEventListener('click', () => {
-        input.value = '';
-        inputIcon.classList.remove('close');
+        clearInput();
       });
   }
+});
+
+inputIcon.addEventListener('click', function (event) {
+  completeInput(event);
+
+  closeIcon &&
+    inputIcon.addEventListener('click', () => {
+      clearInput();
+    });
 });
 
 async function getDataWithQuery(query) {
@@ -51,7 +81,9 @@ async function getDataWithQuery(query) {
 </div>`;
     });
   } catch {
-    //console.log(error);
+    container.style.display = 'block';
+    loadingImage.style.display = 'none';
+    loading.textContent = 'Попробуйте еще раз!';
   }
 }
 
