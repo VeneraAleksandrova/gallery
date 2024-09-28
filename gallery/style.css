@@ -216,9 +216,9 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%;
+  height: 80%;
   transition: all 0.3s ease;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .hide {

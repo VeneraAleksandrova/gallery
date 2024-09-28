@@ -27,10 +27,12 @@ async function getData() {
     resultsImages.forEach((resultsImage) =>
       resultsImage.addEventListener("click", openModal)
     );
-  } catch {
-    //container.style.display = "block";
+  } catch (err) {
+    container.innerHTML = "";
+    container.style.display = "block";
     loadingImage.style.display = "none";
     loading.textContent = "Попробуйте еще раз!";
+    console.log(err);
   }
 }
 
@@ -40,6 +42,7 @@ async function getDataWithQuery(query) {
       `https://api.unsplash.com/search/photos?client_id=JKPLOCX2f0TBKu_pGGULx_ALX6QjwfsPt6vX_U_VWwI&query=${query}&per_page=30`
     );
     const data = await res.json();
+
     loadedCount = errorCount = 0;
     imageCount = data.results.length;
     if (imageCount === 0) {
@@ -57,10 +60,12 @@ async function getDataWithQuery(query) {
       );
       console.log(data.results);
     }
-  } catch {
+  } catch (err) {
+    container.innerHTML = "";
     container.style.display = "block";
     loadingImage.style.display = "none";
     loading.textContent = "Попробуйте еще раз!";
+    console.log(err);
   }
 }
 
