@@ -54,7 +54,7 @@ body {
 }
 body {
   font-size: 1.6rem;
-  color: var(--text-dark, #403f3d);
+  color: var(--text-dark, #282727);
 }
 
 input,
