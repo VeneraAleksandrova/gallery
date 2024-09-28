@@ -42,13 +42,21 @@ async function getDataWithQuery(query) {
     const data = await res.json();
     loadedCount = errorCount = 0;
     imageCount = data.results.length;
-    completeContainer(data.results);
-    const resultsImages = document.querySelectorAll(".results img");
+    if (imageCount === 0) {
+      container.innerHTML = "";
+      container.style.display = "block";
+      loadingImage.style.display = "none";
+      loading.textContent =
+        "Увы, согласно указанным параметрам картинки не найдены!";
+    } else {
+      completeContainer(data.results);
+      const resultsImages = document.querySelectorAll(".results img");
 
-    resultsImages.forEach((resultsImage) =>
-      resultsImage.addEventListener("click", openModal)
-    );
-    console.log(data.results);
+      resultsImages.forEach((resultsImage) =>
+        resultsImage.addEventListener("click", openModal)
+      );
+      console.log(data.results);
+    }
   } catch {
     container.style.display = "block";
     loadingImage.style.display = "none";
@@ -67,10 +75,13 @@ input.addEventListener("keydown", function (event) {
 });
 
 inputIcon.addEventListener("click", function (event) {
+  event.preventDefault();
   completeInput(event);
 
   closeIcon &&
-    inputIcon.addEventListener("click", () => {
+    inputIcon.addEventListener("click", (event) => {
+      event.preventDefault();
+
       clearInput();
     });
 });
@@ -90,6 +101,7 @@ function clearInput() {
 }
 
 function completeContainer(data) {
+  container.innerHTML = "";
   data.forEach((element) => {
     createElement(element);
   });
