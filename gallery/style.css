@@ -1,11 +1,11 @@
 /*Обнуление*/
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600&display=swap");
 
 * {
   padding: 0;
   margin: 0;
   border: 0;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 *,
 *:before,
@@ -111,7 +111,7 @@ header {
   align-items: center;
 }
 h1 {
-  font-family: 'Fascinate Inline', system-ui;
+  font-family: "Fascinate Inline", system-ui;
   font-size: 3rem;
   text-shadow: 2px 2px 5px #fff;
   -moz-user-select: none;
@@ -197,7 +197,7 @@ main {
   justify-content: center;
   align-items: center;
   font-size: 3rem;
-  font-family: 'Fascinate Inline', system-ui;
+  font-family: "Fascinate Inline", system-ui;
 }
 
 .modal-overlay {
@@ -211,20 +211,20 @@ main {
   right: 0;
 }
 
-.modal-wrapper {
+.modal-overlay img {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 20px;
-}
-
-.modal-content {
-  margin: 20px auto;
+  width: 50%;
   transition: all 0.3s ease;
-  width: 100%;
+  object-fit: cover;
 }
 
 .hide {
   display: none;
+}
+
+.no_scroll {
+  overflow: hidden;
 }
